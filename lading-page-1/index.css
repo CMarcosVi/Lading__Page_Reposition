@@ -144,19 +144,116 @@ body::-webkit-scrollbar-thumb:hover {
     
 }
 /*-----Mouse animation-----*/
+
 /*-----Main Title-----*/
 .section1{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    height: 85vh;
+    height: 100vh;
+}
+.section1 div div{
+    display: flex;
+    flex-direction: column;
+}
+.section1 div h1{
+    font-size: 3rem;
+}
+.section1 div h2{
+    font-size: 1rem;
+}
+.img-initial{
+    height: 250px;
+    width: 250px;
+    border: 1px solid #000;
 }
 #title-enterprise{
     font-family: "Roboto Slab", serif;
     font-weight: 400;
 
 }
+/**/
+.part-svg-animate{
+    overflow: hidden;
+    width: 100%;
+}
+.part-svg-animate svg{
+    width: 200%;
+}
+.container-btn-initial{
+    display: flex;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.btn-initial {
+  background-color: #FFFFFF;
+  width: 150px;
+  height: 25px;
+  border-radius: 1rem;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  font-family: Clarkson,Helvetica,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1em;
+  margin: 0;
+  opacity: 1;
+  outline: 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1),background-color 100ms cubic-bezier(.694, 0, 0.335, 1),color 100ms cubic-bezier(.694, 0, 0.335, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.btn-initial:before {
+  animation: opacityFallbackOut .5s step-end forwards;
+  backface-visibility: hidden;
+  background-color: #000000;
+  clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+  content: "";
+  height: 100%;
+  left: 0;
+  border-radius: 1rem;
+  position: absolute;
+  top: 0;
+  transform: translateZ(0);
+  transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+  width: 100%;
+}
+.btn-initial:hover{
+    color: #fff;
+    transform: 1s;
+}
+.btn-initial:hover:before {
+  animation: opacityFallbackIn 0s step-start forwards;
+  clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+  color: #fff;
+}
+
+.btn-initial:after {
+  background-color: #FFFFFF;
+}
+
+.btn-initial span {
+  z-index: 1;
+  position: relative;
+}
+/**/
+@media only screen and (max-width: 684px) {
+    .section1{
+        flex-direction: column;
+    }
+}
 /*-----Main Title-----*/
+
 /*-----outhers Animations and Codes-----*/
 main{
     background-color: #fff;

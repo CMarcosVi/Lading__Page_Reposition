@@ -1,6 +1,8 @@
 const ICON_POINTER_SCROLL = document.getElementById("mouseContainer");
 const IMAGENS_LOGO = [""];
 const LOGO = document.querySelector('#logoNavBar');
+const ELEMENTS = document.querySelectorAll(".smooth-scroll");
+const SVGWAVE = document.querySelectorAll(".wave-svg")
 
 
 const invisiblePointerMouse = () => {
@@ -12,6 +14,48 @@ const invisiblePointerMouse = () => {
         ICON_POINTER_SCROLL.style.opacity = '1'
     }
 }
+
+const scrollRiseSmooth = () => {
+    window.addEventListener("scroll" , () => {
+        const scrollPosition = window.scrollY;
+
+        ELEMENTS.forEach((element,index) => {
+            const offset = scrollPosition * .175 * (index + 1);
+            if(window.innerWidth < 684){
+                element.style.transform = `translateY(-${offset}px)`
+            }else{
+                element.style.transform = `translateY(+${offset}px)`
+            }
+            console.log(offset)
+        });
+        SVGWAVE.forEach((element,index) => {
+            const offset = scrollPosition * .55 * (index + 1);
+            if(window.innerWidth < 684){
+                element.style.translate = `translateX(-${offset}px ) rotate(180deg)`
+            }else{
+                element.style.transform = `translateX(-${offset}px) rotate(180deg)`
+            }
+            console.log(offset)
+        });
+    })
+
+}
+/*const scrollLateralSmooth = () => {
+    window.addEventListener("scroll" , () => {
+        const scrollPosition = window.scrollY;
+
+        SVGWAVE.forEach((element,index) => {
+            const offset = scrollPosition * .55 * (index + 1);
+            if(window.innerWidth < 684){
+                element.style.translate = `translateX(-${offset}px ) rotate(180deg)`
+            }else{
+                element.style.transform = `translateX(-${offset}px) rotate(180deg)`
+            }
+            console.log(offset)
+        });
+    })
+
+}*/
 
 const changeLogoNavBar = () => {
     let indexImagemAtual = 0;
@@ -35,6 +79,7 @@ const changeLogoNavBar = () => {
 const initialization = () => {
     changeLogoNavBar();
     invisiblePointerMouse();
+    scrollRiseSmooth();
     window.addEventListener('scroll', invisiblePointerMouse);
 }
 initialization();
