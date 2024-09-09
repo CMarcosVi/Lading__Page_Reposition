@@ -170,15 +170,17 @@ body::-webkit-scrollbar-thumb:hover {
 #title-enterprise{
     font-family: "Roboto Slab", serif;
     font-weight: 400;
-
 }
-/**/
 .part-svg-animate{
+
+    padding: 0;
     overflow: hidden;
     width: 100%;
 }
 .part-svg-animate svg{
+    transform: rotate(180deg);
     width: 200%;
+    margin-bottom:-1rem;  
 }
 .container-btn-initial{
     display: flex;
@@ -246,11 +248,18 @@ body::-webkit-scrollbar-thumb:hover {
   z-index: 1;
   position: relative;
 }
-/**/
+
 @media only screen and (max-width: 684px) {
     .section1{
         flex-direction: column;
     }
+}
+.container-section2-info{
+    margin-top: 5rem;
+    opacity: 0;
+    display: flex;
+    justify-content: space-between;
+    transition: 1s;
 }
 /*-----Main Title-----*/
 
@@ -283,7 +292,7 @@ main{
     border-top: 1px solid #fff;
     border-left: 1px solid #fff;
     border-bottom: 1px solid #fff;
-    animation:scale-up-hor-right .5s linear;
+    animation: .5s linear;
 }
 
 .scale-up-hor-left{
@@ -293,7 +302,7 @@ main{
     border-top: 1px solid #fff;
     border-right: 1px solid #fff;
     border-bottom: 1px solid #fff;
-    animation:scale-up-hor-left .5s linear;
+    animation: .5s linear;
 }
 
  @keyframes scale-up-hor-right{
