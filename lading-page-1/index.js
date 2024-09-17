@@ -6,7 +6,8 @@ const SVGWAVE = document.querySelectorAll(".wave-svg");
 const SECTIONINFO2 = document.querySelector(".container-section2-info");
 const SCALERIGHT = document.querySelector(".scale-up-hor-right");
 const SCALELEFT = document.querySelector(".scale-up-hor-left");
-const TEXTSCALE = document.getElementsByClassName(".text-scale");
+const TEXTSCALE = document.getElementsByClassName("text-scale");
+const COUNTERS = document.querySelectorAll(".counterAnimation")
 
 
 const invisiblePointerMouse = () => {
@@ -64,6 +65,7 @@ const scrollRiseSmooth = () => {
 const changeLogoNavBar = () => {
     let indexImagemAtual = 0;
   
+    if (IMAGENS_LOGO.length === 0) return;
     const novaImagem = new Image();
     novaImagem.src = novaImagem.alt = IMAGENS_LOGO[indexImagemAtual];
     novaImagem.classList.add('dda');
@@ -88,22 +90,71 @@ const showScroll = () => {
             SECTIONINFO2.style.transition = '1s';
             SCALERIGHT.style.animationName = 'scale-up-hor-right';
             SCALELEFT.style.animationName = 'scale-up-hor-left';
-            TEXTSCALE.style.opacity = '1';
+            Array.from(TEXTSCALE).forEach(text => text.style.opacity = '1');  // Fix for TEXTSCALE
         }else{
             SECTIONINFO2.style.opacity = '0';
             SECTIONINFO2.style.transition = '1s';
             SCALERIGHT.style.animationName = '';
             SCALELEFT.style.animationName = '';
-            TEXTSCALE.style.opacity = '0';
+            Array.from(TEXTSCALE).forEach(text => text.style.opacity = '0');  // Fix for TEXTSCALE
         }
     });
 }
+const counterFunc = (element) => {
+    let startValue = 0;
+    let endValue = parseInt(element.getAttribute("data-val"));
+    const totalDuration = 1000;
+    const intervalTime = 10;
+
+    const incrementValue = endValue / (totalDuration / intervalTime);
+
+    let counter = setInterval(() => {
+        startValue += incrementValue;
+        if (startValue >= endValue) {
+            startValue = endValue;
+            clearInterval(counter);
+        }
+        element.textContent = Math.floor(startValue);
+    }, intervalTime);
+};
+
+
+
+const countShowNumber = () => {
+    const array = Array.from(COUNTERS);
+    // select array element
+    array.map((item) => {
+        // data layer
+        let counterInnerText = item.textContent;
+
+        let count = 1;
+        let speed = item.dataset.speed / counterInnerText
+        function counterUp() {
+            item.textContent = count++
+            if (counterInnerText < count) {
+                clearInterval(stop);
+            }
+        }
+        const stop = setInterval(() => {
+            counterUp();
+        }, speed);
+    })
+}
+    
+
+
+
+
+
 
 const initialization = () => {
     scrollRiseSmooth();
+    countShowNumber();
     showScroll();
+    showNumberAnimation();
     changeLogoNavBar();
     invisiblePointerMouse();
     window.addEventListener('scroll', invisiblePointerMouse);
+
 }
 initialization();
